@@ -21,3 +21,6 @@ Data is persisted in a PostgresSQL database. The data model consists of four dat
 All members of TA team can log in and create posts in threads. Non-members can read threads but not 
 create posts.
 The web app accesses the database in these four ways.
+
+## Cookies for access control
+When a user logs in, he has to has access control to specific pages as a user. This is made possible by cookies.
