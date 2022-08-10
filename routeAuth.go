@@ -8,5 +8,5 @@ import (
 
 func authenticate(writer http.ResponseWriter, request *http.Request) {
 	request.ParseForm()
-	user, _ :=
+	user, _ := data.U
 }
