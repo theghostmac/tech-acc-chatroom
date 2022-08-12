@@ -6,6 +6,16 @@ import (
 	// "github.com/gorilla/mux"
 )
 
+/*********
+
+- Try to figure out a simple architecture
+- Then build on it and improve the quality of the code and arch
+- Try to separate the DB concerns and services, handlers etc.
+- Utilize interfaces too, it helps a lot
+
+You're doing well ...
+**/
+
 func main() {
 	// create a multiplexer
 	mux := http.NewServeMux()
