@@ -5,8 +5,9 @@ import (
 	"crypto/sha1"
 	"database/sql"
 	"fmt"
-	_ "github.com/lib/pq"
 	"log"
+
+	_ "github.com/lib/pq"
 )
 
 var Db *sql.DB
@@ -21,6 +22,7 @@ func init() {
 }
 
 func createUUID() (uuid string) {
+	// unless you want to engineer a new uuid creation, just use google uuid package v3 or v4
 	u := new([16]byte)
 	_, err := rand.Read(u[:])
 	if err != nil {

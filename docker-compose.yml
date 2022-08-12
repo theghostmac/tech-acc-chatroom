@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  db:
+    container_name: "tech-acc-sql"
+    environment:
+      - POSTGRESQL_ROOT_PASSWORD: ""
+      - POSTGRESQL_DATABASE: ""
+    ports:
+      - "5432:5432"
+    restart:
+      -  "always"
+    networks:
+      - tech_acc_network 
+    volumes:
+      - /vol/tdb:/var/lib/mysql
+
+  api:
+    container_name: "tech-acc-api"
+    depends_on:
+      - db 
+    ports:
+      - "8080:8080"
+    volumes:
+      - /vol/tbe:/app 
+    networks:
+      - tech_acc_network
+
+networks:
+  tech_acc_network:
+
+volumes:
+  /vol/tdb:
+  /vol/tbe:
