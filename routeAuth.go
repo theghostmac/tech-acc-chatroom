@@ -46,6 +46,7 @@ func AuthUser(w http.ResponseWriter, r *http.Request) {
 
 	expiration_date := time.Now().Add(5 * time.Minute)
 
+	// remember we need to encode some data
 	encode_data := DataToEncode{
 		Username: user_data.Username,
 		Email:    user_data.Email,
@@ -69,4 +70,7 @@ func AuthUser(w http.ResponseWriter, r *http.Request) {
 		Value:   token_string,
 		Expires: expiration_date,
 	})
+
+	// now the cookie has been generated, you might want to write a middleware that
+	// checks when the cookie is about to expire and refresh it if the user is still active.
 }
