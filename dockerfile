@@ -10,7 +10,13 @@ RUN CGO_ENABLED=1 \
  GOOS=linux \ 
  go mod download  
 
-FROM alpine:latest 
+RUN go get github.com/githubnemo/CompileDaemon
+
+COPY entrypoint.sh /app/
+
+RUN go build -o main . 
+
+FROM alpine:latest AS production
 
 COPY --from=builder /app .
 
