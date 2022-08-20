@@ -3,6 +3,7 @@ package middlewares
 import (
 	"log"
 	"net/http"
+	"runtime/debug"
 
 	"go.uber.org/zap"
 )
@@ -11,7 +12,13 @@ type Middleware struct {
 	logger *zap.Logger
 }
 
-func RecoveryMiddleware(next http.Handler) http.Handler {
+func NewMiddleware(logger *zap.Logger) *Middleware {
+	return &Middleware{
+		logger: logger,
+	}
+}
+
+func (rm *Middleware) RecoveryMiddleware(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		defer func() {
 			if err := recover(); err != nil {
@@ -21,6 +28,7 @@ func RecoveryMiddleware(next http.Handler) http.Handler {
 				// handler.logger.Debug("error string", zap.Any("stack", string(debug.stack())))
 
 				log.Print(err)
+				rm.logger.Debug("error trace", zap.Any("stack", string(debug.Stack())))
 				w.WriteHeader(http.StatusOK)
 			}
 		}()
