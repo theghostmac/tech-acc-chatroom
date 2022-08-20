@@ -1,0 +1,6 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory `/Users/mac/Desktop/tech-acc-chatroom'
+make: Leaving directory `/Users/mac/Desktop/tech-acc-chatroom'
+ 
+make: *** No targets.  Stop.
+
